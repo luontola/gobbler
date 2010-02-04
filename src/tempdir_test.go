@@ -26,7 +26,8 @@ func TemporaryDirectorySpec(c Context) {
 			c.Expect(dir, Satisfies, dir.Exists())
 		})
 		c.Specify("it is empty", func() {
-			c.Expect(len(dir.AllFiles()), Equals, 0)
+			files := dir.AllFiles()
+			c.Expect(files, Satisfies, len(files) == 0)
 		})
 		c.Specify("After disposing, the directory no longer exists", func() {
 			dir.Dispose()
