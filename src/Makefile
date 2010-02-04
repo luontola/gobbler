@@ -4,6 +4,7 @@ TARG=gobbler
 GOFILES=\
 	hello.go\
 
+EXECUTABLE=gob
 CLEANFILES=\
 	main\
 
@@ -12,7 +13,7 @@ main: package
 	$(LD) -L_obj -o $@ main.$O
 
 install: main
-	cp main $(QUOTED_GOBIN)/$(TARG)
+	cp main $(QUOTED_GOBIN)/$(EXECUTABLE)
 
 include $(GOROOT)/src/Make.pkg
 
