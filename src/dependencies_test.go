@@ -12,13 +12,12 @@ import (
 func PackageDependenciesSpec(c Context) {
 	pkg, _ := CreateTempDir()
 	defer pkg.Dispose()
-	/*
+	
 	c.Specify("Given a package with no files", func() {
 		dependencies := GetPackageDependencies(pkg.Path())
 		
 		c.Specify("it has no dependencies", func() {
-			// TODO
-			c.Expect(dependencies, ContainsExactly)
+			c.Expect(dependencies, ContainsExactly, Values())
 		})
 	})
 	
@@ -30,8 +29,7 @@ func PackageDependenciesSpec(c Context) {
 		dependencies := GetPackageDependencies(pkg.Path())
 		
 		c.Specify("it has the dependencies of that one file", func() {
-			// TODO
-			c.Expect(dependencies, ContainsExactly, "dependency")
+			c.Expect(dependencies, ContainsExactly, Values("dependency"))
 		})
 	})
 	
@@ -49,11 +47,8 @@ func PackageDependenciesSpec(c Context) {
 		dependencies := GetPackageDependencies(pkg.Path())
 		
 		c.Specify("it has the combined dependencies of all those files", func() {
-			// TODO
-			c.Expect(dependencies, ContainsExactly, "dependency1", "dependency2", "common/dependency")
+			c.Expect(dependencies, ContainsExactly, Values("dependency1", "dependency2", "common/dependency"))
 		})
 	})
-	
-	*/
 }
 
