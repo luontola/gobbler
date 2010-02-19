@@ -12,6 +12,7 @@ import (
 
 func TestAllSpecs(t *testing.T) {
 	r := gospec.NewRunner()
+	r.AddSpec("FileDependenciesSpec", FileDependenciesSpec)
 	r.AddSpec("PackageDependenciesSpec", PackageDependenciesSpec)
 	r.AddSpec("StringSetSpec", StringSetSpec)
 	r.AddSpec("TemporaryDirectorySpec", TemporaryDirectorySpec)

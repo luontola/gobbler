@@ -9,7 +9,99 @@ import (
 )
 
 
+func FileDependenciesSpec(c Context) {
+
+	c.Specify("Dependencies area read from a file's imports:", func() {
+	
+		c.Specify("no imports", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+			`)
+			c.Expect(deps, ContainsExactly, Values())
+		})
+		c.Specify("one import", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import "dep1"
+			`)
+			c.Expect(deps, ContainsExactly, Values("dep1"))
+		})
+		c.Specify("many imports", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import "dep1"
+				import "dep2"
+			`)
+			c.Expect(deps, ContainsExactly, Values("dep1", "dep2"))
+		})
+		c.Specify("import blocks", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import (
+					"dep1"
+					"dep2"
+				)
+			`)
+			c.Expect(deps, ContainsExactly, Values("dep1", "dep2"))
+		})
+		c.Specify("named import", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import name "dep1"
+			`)
+			c.Expect(deps, ContainsExactly, Values("dep1"))
+		})
+		c.Specify(". import", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import . "dep1"
+			`)
+			c.Expect(deps, ContainsExactly, Values("dep1"))
+		})
+		c.Specify("_ import", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import _ "dep1"
+			`)
+			c.Expect(deps, ContainsExactly, Values("dep1"))
+		})
+	})
+	
+	c.Specify("Duplicate imports are reported only once", func() {
+		deps, _ := GetFileDependencies("file.go", `
+			package mypkg
+			import a "dep1"
+			import b "dep1"
+		`)
+		c.Expect(deps, ContainsExactly, Values("dep1"))
+	})
+	
+	c.Specify("Syntax errors are handled gracefully:", func() {
+	
+		c.Specify("missing quotes", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import dep1
+			`)
+			c.Expect(deps, ContainsExactly, Values())
+		})
+		c.Specify("garbage after the import", func() {
+			deps, _ := GetFileDependencies("file.go", `
+				package mypkg
+				import "dep1" garbage
+			`)
+			c.Expect(deps, ContainsExactly, Values())
+		})
+		c.Specify("empty file", func() {
+			deps, _ := GetFileDependencies("file.go", `
+			`)
+			c.Expect(deps, ContainsExactly, Values())
+		})
+	})
+}
+
 func PackageDependenciesSpec(c Context) {
+	/*
 	pkg, _ := CreateTempDir()
 	defer pkg.Dispose()
 	
@@ -50,5 +142,6 @@ func PackageDependenciesSpec(c Context) {
 			c.Expect(dependencies, ContainsExactly, Values("dependency1", "dependency2", "common/dependency"))
 		})
 	})
+	*/
 }
 
