@@ -3,7 +3,7 @@ include $(GOROOT)/src/Make.$(GOARCH)
 TARG=gobbler
 GOFILES=\
 	dependencies.go\
-	hello.go\
+	set.go\
 
 EXECUTABLE=gob
 CLEANFILES=\
