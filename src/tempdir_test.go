@@ -11,7 +11,6 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
-	"strings"
 	"time"
 )
 
@@ -129,7 +128,7 @@ func (this *TempDir) AllFiles() []string {
 func (this *TempDir) WriteFile(name string, content string) {
 	target := this.PathTo(name)
 	createParentDirs(target)
-	ioutil.WriteFile(target, strings.Bytes(content), defaultFilePerm)
+	ioutil.WriteFile(target, []byte(content), defaultFilePerm)
 }
 
 func createParentDirs(file string) {

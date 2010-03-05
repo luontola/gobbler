@@ -47,9 +47,7 @@ func (this *DependencyVisitor) Visit(node interface{}) ast.Visitor {
 }
 
 func (this *DependencyVisitor) addImports(importSpec *ast.ImportSpec) {
-	for _, path := range importSpec.Path {
-		this.imports.Add(stripQuotes(string(path.Value)))
-	}
+	this.imports.Add(stripQuotes(string(importSpec.Path.Value)))
 }
 
 var unquote = regexp.MustCompile(`"(.+)"`)
