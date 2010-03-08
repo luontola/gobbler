@@ -5,11 +5,12 @@
 package gobbler
 
 import (
+	"gospec"
 	. "gospec"
 )
 
 
-func StringSetSpec(c Context) {
+func StringSetSpec(c gospec.Context) {
 	set := new(StringSet)
 
 	c.Specify("An empty set contains nothing", func() {

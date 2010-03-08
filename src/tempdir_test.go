@@ -5,6 +5,7 @@
 package gobbler
 
 import (
+	"gospec"
 	. "gospec"
 	"container/vector"
 	"fmt"
@@ -15,7 +16,7 @@ import (
 )
 
 
-func TemporaryDirectorySpec(c Context) {
+func TemporaryDirectorySpec(c gospec.Context) {
 	
 	c.Specify("When a temporary directory is created", func() {
 		dir, _ := CreateTempDir()

@@ -5,11 +5,12 @@
 package gobbler
 
 import (
+	"gospec"
 	. "gospec"
 )
 
 
-func FileDependenciesSpec(c Context) {
+func FileDependenciesSpec(c gospec.Context) {
 
 	c.Specify("Dependencies area read from a file's imports:", func() {
 	
