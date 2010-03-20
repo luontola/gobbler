@@ -16,7 +16,7 @@ Project Goals
 
 - **Convention over configuration** - When files are put into source and test directories (/src/main/go and /src/test/go), then all packages and tests are detected automatically. The project configuration file should only need to say whether the project is a library or an executable, and what is the name of the executable.
 
-- **Smart dependency handling** - Allow packages (including test code) to depend on other packages in the same project, without requiring the build process to "make install" the dependencies to $GOROOT. Build only those packages which have changed since last build (or whose dependencies have changed).
+- **Smart dependency handling** - Allow packages (including test code) to depend on other packages in the same project, without requiring the build process to "make install" the dependencies to $GOROOT. Build only those packages which have changed since last build (or whose dependencies have changed). In the long-term, also dependencies to external libraries will be resolved automatically, similar to Maven et al.
 
 
 License
