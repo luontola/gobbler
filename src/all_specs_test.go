@@ -12,10 +12,10 @@ import (
 
 func TestAllSpecs(t *testing.T) {
 	r := gospec.NewRunner()
-	r.AddSpec("FileDependenciesSpec", FileDependenciesSpec)
-	r.AddSpec("PackageDependenciesSpec", PackageDependenciesSpec)
-	r.AddSpec("StringSetSpec", StringSetSpec)
-	r.AddSpec("TemporaryDirectorySpec", TemporaryDirectorySpec)
+	r.AddSpec(FileDependenciesSpec)
+	r.AddSpec(PackageDependenciesSpec)
+	r.AddSpec(StringSetSpec)
+	r.AddSpec(TemporaryDirectorySpec)
 	gospec.MainGoTest(r, t)
 }
 
